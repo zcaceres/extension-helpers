@@ -2,7 +2,9 @@
 
 Promisified, cross-browser wrappers and helpers for extension APIs.
 
-Support for: Chrome, Firefox, Edge.
+- Normalized & Promisified: no more fussing with Chrome's irregular callbacks, all functions returns a promise
+- Simple: hide the `browser.api.action` boilerplate behind function calls
+- Cross-Browser: use the same functions on Chrome, Firefox, or Edge
 
 Note: Many APIs are not supported in Edge. Check their documentation.
 
@@ -55,7 +57,8 @@ cookie.getAll(url, name, additionalParamsObj);
 cookie.remove(url, name, optionalStoreId);
 
 // Badges
-const badgeManager = new BadgeManager(chrome || browser, badgeColor);
+// Controls badge icons attached to the browser action toolbar button
+const badgeManager = new BadgeManager(badgeColor);
 
 badgeManager.add(number);
 badgeManager.subtract(number);
