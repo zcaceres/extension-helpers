@@ -1,6 +1,6 @@
 # Browser Extension Helpers
 
-Promisified, cross-browser compatible wrappers and helpers for extension APIs.
+Promisified, cross-browser wrappers and helpers for extension APIs.
 
 Support for: Chrome, Firefox, Edge.
 
