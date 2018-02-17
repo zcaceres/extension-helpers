@@ -1,14 +1,16 @@
 # Browser Extension Helpers
 
-Cross-browser compatible wrappers and helpers for  extension development.
+Promisified, cross-browser compatible wrappers and helpers for extension APIs.
 
-Support for: Chrome, Firefox, Edge
+Support for: Chrome, Firefox, Edge.
+
+Note: Many APIs are not supported in Edge. Check their documentation.
 
 ## Features
 ### Tabs
 ```js
 import extensionHelpers from 'extension-helpers'
-import { tabs } from extensionHelpers
+import { tabs, cookies, localStorage, message, BadgeManager } from extensionHelpers
 
 tabs.focusTab(tabId)
 
@@ -28,10 +30,8 @@ tabs.executeOnAllTabs(fileOrCodeToInject, fileOrCode)
 tabs.executeOnActiveTabs(fileOrCodeToInject, fileOrCode)
 
 tabs.executeScript(tabId, fileOrCodeToInject, fileOrCode)
-```
 
-### Message
-```js
+// Message
 message.tab(tabId, message)
 
 message.allTabs(message)
@@ -39,17 +39,13 @@ message.allTabs(message)
 message.activeTab(message)
 
 message.activeTabs(message)
-```
 
-### Local Storage
-```js
+// Local Storage
 localStorage.get(key)
 
 localStorage.set(key, value)
-```
 
-### Cookies
-```js
+// Cookies
 cookie.get(url, name, optionalStoreId)
 
 cookie.set(url, name, value, optionalStoreId)
@@ -57,14 +53,11 @@ cookie.set(url, name, value, optionalStoreId)
 cookie.getAll(url, name, additionalParamsObj);
 
 cookie.remove(url, name, optionalStoreId);
-```
 
-### Badges
-```js
+// Badges
 const badgeManager = new BadgeManager(chrome || browser, badgeColor);
 
 badgeManager.add(number);
 badgeManager.subtract(number);
 badgeManager.clear();
-
 ```
