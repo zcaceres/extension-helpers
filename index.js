@@ -1,3 +1,10 @@
+import cookie from './lib/cookie';
+import badgeManager from './lib/badge';
+import tabs from './lib/tabs';
+import message from './lib/message';
+import localStorage from './lib/localStorage';
+import extensions from './lib/extensions';
+
 // Prefix for Edge/Firefox/Chrome to access browser apis
 function prefixBrowser () {
   window.browser = (
@@ -7,14 +14,16 @@ function prefixBrowser () {
       window.chrome;
     }());
 }
+
 prefixBrowser();
 
+console.log(cookie, badgeManager, tabs, message, localStorage, extensions);
+
 export default {
-  cookie: require('./lib/cookie'),
-  badge: require('./lib/badge'),
-  badgeManager: require('./lib/badge'),
-  tabs: require('./lib/tabs'),
-  message: require('./lib/message'),
-  localStorage: require('./lib/localStorage'),
-  extensions: require('./lib/extensions')
+  cookie: cookie,
+  badgeManager: badgeManager,
+  tabs: tabs,
+  message: message,
+  localStorage: localStorage,
+  extensions: extensions
 };
