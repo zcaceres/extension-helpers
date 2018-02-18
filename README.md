@@ -12,7 +12,7 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 ### Tabs
 ```js
 import extensionHelpers from 'extension-helpers'
-import { tabs, cookies, localStorage, message, BadgeManager } from extensionHelpers
+import { tabs, extensions, cookies, localStorage, message, BadgeManager } from extensionHelpers
 
 tabs.focusTab(tabId)
 
@@ -55,6 +55,12 @@ cookie.set(url, name, value, optionalStoreId)
 cookie.getAll(url, name, additionalParamsObj);
 
 cookie.remove(url, name, optionalStoreId);
+
+// Extension Management (management api)
+extensions.enable(extensionId);
+extensions.disable(extensionId);
+extensions.getAll();
+extensions.get(extensionId);
 
 // Badges
 // Controls badge icons attached to the browser action toolbar button
