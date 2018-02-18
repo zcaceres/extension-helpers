@@ -10,7 +10,7 @@ function prefixBrowser () {
 prefixBrowser();
 
 export default {
-  cookie: require('./lib/cookies'),
+  cookie: require('./lib/cookie'),
   badge: require('./lib/badge'),
   badgeManager: require('./lib/badge'),
   tabs: require('./lib/tabs'),
