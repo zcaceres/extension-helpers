@@ -31,7 +31,7 @@ function getActive () {
 
 function executeOnActive (toInject, typeToInject) {
   return getActive(tab => {
-    executeScript(tab.id, toInject, typeToInject)
+    executeScript(tab.id, toInject, typeToInject);
   });
 }
 
