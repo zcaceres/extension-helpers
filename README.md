@@ -14,22 +14,24 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 import extensionHelpers from 'extension-helpers'
 import { tabs, extensions, cookies, localStorage, message, BadgeManager } from extensionHelpers
 
-tabs.focusTab(tabId)
+tabs.focus(tabId)
 
-tabs.closeTab(tabId)
+tabs.close(tabId)
 
-tabs.openTab('http://google.com', true)
+tabs.open('http://google.com', true)
   .then(tab => /* do something */)
 
-tabs.getActiveTabs()
+tabs.getActive()
   .then(arrayOfTabs => /* do something */)
 
-tabs.getAllTabs()
+tabs.getAllActive()
   .then(arrayOfTabs => /* do something */)
 
-tabs.executeOnAllTabs(fileOrCodeToInject, fileOrCode)
+tabs.executeOnAll(fileOrCodeToInject, fileOrCode)
 
-tabs.executeOnActiveTabs(fileOrCodeToInject, fileOrCode)
+tabs.executeOnActive(fileOrCodeToInject, fileOrCode)
+
+tabs.executeOnAllActive(fileOrCodeToInject, fileOrCode)
 
 tabs.executeScript(tabId, fileOrCodeToInject, fileOrCode)
 
