@@ -1,6 +1,6 @@
 /* global browser chrome */
 
-function enable(id) {
+function enable (id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.management.setEnabled(id, true);
@@ -11,7 +11,7 @@ function enable(id) {
   }
 }
 
-function disable(id) {
+function disable (id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.management.setEnabled(id, false);
@@ -22,10 +22,10 @@ function disable(id) {
   }
 }
 
-function getAll() {
+function getAll () {
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.management.getAll(extensionInfoArr => {
+      chrome.management.getAll((extensionInfoArr) => {
         const err = chrome.runtime.lastError;
         if (err) return reject(err);
         resolve(extensionInfoArr);
@@ -36,10 +36,10 @@ function getAll() {
   }
 }
 
-function get(id) {
+function get (id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.management.get(id, extensionInfo => {
+      chrome.management.get(id, (extensionInfo) => {
         // ExtensionInfo object
         const err = chrome.runtime.lastError;
         if (err) return reject(err);

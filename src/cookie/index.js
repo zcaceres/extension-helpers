@@ -1,8 +1,6 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 /* global chrome browser */
 
-function get(url, name, optionalStoreId) {
+function get (url, name, optionalStoreId) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.cookies.get({ url, name, storeId: optionalStoreId }, function (cookie) {
@@ -16,8 +14,8 @@ function get(url, name, optionalStoreId) {
   }
 }
 
-function set(url, name, value, optionalParamsObj) {
-  const params = _extends({ url, name, value }, optionalParamsObj);
+function set (url, name, value, optionalParamsObj) {
+  const params = { url, name, value, ...optionalParamsObj };
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.cookies.set(params, function (cookie) {
@@ -31,8 +29,8 @@ function set(url, name, value, optionalParamsObj) {
   }
 }
 
-function getAll(url, name, optionalParamsObj) {
-  const params = _extends({ url, name }, optionalParamsObj);
+function getAll (url, name, optionalParamsObj) {
+  const params = { url, name, ...optionalParamsObj };
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.cookies.getAll(params, function (cookies) {
@@ -46,7 +44,7 @@ function getAll(url, name, optionalParamsObj) {
   }
 }
 
-function remove(url, name, optionalStoreId) {
+function remove (url, name, optionalStoreId) {
   const params = { url, name, storeId: optionalStoreId };
   if (chrome) {
     return new Promise((resolve, reject) => {

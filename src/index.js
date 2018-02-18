@@ -1,9 +1,9 @@
-import cookie from './lib/cookie';
-import badgeManager from './lib/badge';
-import tabs from './lib/tabs';
-import message from './lib/message';
-import localStorage from './lib/localStorage';
-import extensions from './lib/extensions';
+import cookie from './cookie';
+import badgeManager from './badge';
+import tabs from './tabs';
+import message from './message';
+import localStorage from './localStorage';
+import extensions from './extensions';
 
 // Prefix for Edge/Firefox/Chrome to access browser apis
 function prefixBrowser () {

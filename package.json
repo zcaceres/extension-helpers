@@ -2,10 +2,10 @@
   "name": "extension-helpers",
   "version": "1.0.5",
   "description": "Promisified, cross-browser wrappers and helpers for extension APIs.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "webpack ."
+    "build": "babel src --out-dir lib"
   },
   "author": "Zachary Caceres (@zachcaceres | zachcaceres.com)",
   "license": "MIT",
@@ -17,7 +17,6 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "jsdoc": "^3.5.5",
-    "webpack": "^3.11.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
