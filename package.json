@@ -1,12 +1,13 @@
 {
   "name": "extension-helpers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Promisified, cross-browser wrappers and helpers for extension APIs.",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "webpack ."
   },
-  "author": "Zachary Caceres (@zachcaceres)",
+  "author": "Zachary Caceres (@zachcaceres | zachcaceres.com)",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.17.0",
@@ -15,6 +16,11 @@
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jsdoc": "^3.5.5"
+    "jsdoc": "^3.5.5",
+    "webpack": "^3.11.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }
