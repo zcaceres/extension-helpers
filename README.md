@@ -12,7 +12,7 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 ### Tabs
 ```js
 import extensionHelpers from 'extension-helpers'
-import { tabs, extensions, cookies, localStorage, message, BadgeManager } from extensionHelpers
+const { tabs, extensions, cookies, localStorage, message, BadgeManager } = extensionHelpers
 
 tabs.focus(tabId)
 
