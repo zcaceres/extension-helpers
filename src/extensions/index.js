@@ -1,8 +1,16 @@
 /* global browser chrome */
 
-function enable (id) {
+/**
+ * Enable (activate) a browser extension
+ * @memberof extension
+ * @param  {String} id The browser-assigned id of the extension
+ * @return {Promise<Boolean>} Promise resolved with true if successful or rejected with error
+ */
+function enable(id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
+      const err = chrome.runtime.lastError;
+      if (err) return reject(err);
       chrome.management.setEnabled(id, true);
       resolve(true);
     });
@@ -11,18 +19,31 @@ function enable (id) {
   }
 }
 
-function disable (id) {
+/**
+ * Disable (deactivate) a browser extension
+ * @memberof extension
+ * @param  {String} id The Browser-assigned id of the extension
+ * @return {Promise<Boolean>} Promise resolved with true if successful or rejected with error
+ */
+function disable(id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.management.setEnabled(id, false);
-      resolve(false);
+      const err = chrome.runtime.lastError;
+      if (err) return reject(err);
+      chrome.management.setEnabled(id, true);
+      resolve(true);
     });
   } else {
-    return browser.management.setEnabled(id, false);
+    return browser.management.setEnabled(id, true);
   }
 }
 
-function getAll () {
+/**
+ * Get all currently installed browser extension
+ * @memberof extension
+ * @return {Promise<Array<ExtensionInfo>>} Promise resolved with array of browser extension information objects, or rejected with error
+ */
+function getAll() {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.management.getAll((extensionInfoArr) => {
@@ -36,7 +57,13 @@ function getAll () {
   }
 }
 
-function get (id) {
+/**
+ * Get a browser by extension id
+ * @memberof extension
+ * @param  {String} id Browser-assigned extension id
+ * @return {Promise<ExtensionInfo>} Promise resolved with browser extension information object or rejected with an error
+ */
+function get(id) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.management.get(id, (extensionInfo) => {
