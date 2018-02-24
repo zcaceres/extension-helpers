@@ -42,6 +42,7 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [set](#set-1)
     -   [getAll](#getall-2)
     -   [remove](#remove)
+-   [index](#index)
 -   [BadgeManager](#badgemanager)
     -   [add](#add)
     -   [subtract](#subtract)
@@ -299,6 +300,14 @@ Remove a cookie by name for a given url
 -   `optionalStoreId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Promise resolved with details of cookie that has been removed or rejected with error
+
+### index
+
+**Meta**
+
+-   **copyright**: MIT
+
+-   **author**: Zachary Caceres &lt;\[Website](http&#x3A;//zachcaceres.com) | \[Twitter](www.twitter.com/zachcaceres) | \[GitHub](www.github.com/zcaceres>)
 
 ### BadgeManager
 

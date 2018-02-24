@@ -1,11 +1,12 @@
 {
   "name": "extension-helpers",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Promisified, cross-browser wrappers and helpers for extension APIs.",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "docs": "documentation serve --watch ./src/index.js"
   },
   "author": "Zachary Caceres (@zachcaceres | zachcaceres.com)",
   "license": "MIT",
