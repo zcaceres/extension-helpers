@@ -1,6 +1,14 @@
 /* global chrome browser */
 
-function get (url, name, optionalStoreId) {
+/**
+ * Get a cookie by name for a given url.
+ * @see [How Chrome handles](https://developer.chrome.com/extensions/cookies#method-get) cookies with the same name
+ * @param  {String} url             URL of site to get cookie from
+ * @param  {String} name            Name of cookie to get
+ * @param  {String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @return {Promise<Cookie>}        Promise resolved with Cookie object or rejected with error
+ */
+function get(url, name, optionalStoreId) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.cookies.get({ url, name, storeId: optionalStoreId }, function (cookie) {
@@ -14,11 +22,20 @@ function get (url, name, optionalStoreId) {
   }
 }
 
-function set (url, name, value, optionalParamsObj) {
+/**
+ * Set a cookie by name for a given url.
+ * @see [How Chrome handles](https://developer.chrome.com/extensions/cookies#method-set) cookies with the same name
+ * @param  {String} url             URL of site to get cookie from
+ * @param  {String} name            Name of cookie to get
+ * @param  {String} value           Value of cookie
+ * @param  {Object} optionalParamsObj See [Chrome docs](https://developer.chrome.com/extensions/cookies#method-set) for details of this object
+ * @return {Promise<Cookie>}        Promise resolved with Cookie object or rejected with error
+ */
+function set(url, name, value, optionalParamsObj) {
   const params = { url, name, value, ...optionalParamsObj };
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.cookies.set(params, function (cookie) {
+      chrome.cookies.set(params, function(cookie) {
         const err = chrome.runtime.lastError;
         if (!cookie || err) return reject(err);
         resolve(cookie);
@@ -29,11 +46,18 @@ function set (url, name, value, optionalParamsObj) {
   }
 }
 
-function getAll (url, name, optionalParamsObj) {
+/**
+ * Get all cookies by name for a given url
+ * @param  {String} url               Optional url to get cookies from
+ * @param  {String} name              Optional name of cookie to get from url
+ * @param  {Object} optionalParamsObj Optional parameters, see [Chrome docs](https://developer.chrome.com/extensions/cookies#method-getAll) for specifics of other params
+ * @return {Promise<Array<Cookie>>}   Promise resolved with array of Cookie objects or rejected with an error
+ */
+function getAll(url, name, optionalParamsObj) {
   const params = { url, name, ...optionalParamsObj };
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.cookies.getAll(params, function (cookies) {
+      chrome.cookies.getAll(params, function(cookies) {
         const err = chrome.runtime.lastError;
         if (err) return reject(err);
         resolve(cookies);
@@ -44,11 +68,18 @@ function getAll (url, name, optionalParamsObj) {
   }
 }
 
-function remove (url, name, optionalStoreId) {
+/**
+ * Remove a cookie by name for a given url
+ * @param  {String} url             URL of site to remove cookie from
+ * @param  {String} name            Name of cookie to remove
+ * @param  {String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @return {Promise<Object>}        Promise resolved with details of cookie that has been removed or rejected with error
+ */
+function remove(url, name, optionalStoreId) {
   const params = { url, name, storeId: optionalStoreId };
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.cookies.remove(params, function (details) {
+      chrome.cookies.remove(params, function(details) {
         const err = chrome.runtime.lastError;
         if (err) return reject(err);
         resolve(details);

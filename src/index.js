@@ -7,17 +7,12 @@ import extensions from './extensions';
 
 // Prefix for Edge/Firefox/Chrome to access browser apis
 function prefixBrowser () {
-  window.browser = (
-    function () {
-      return window.msBrowser ||
-      window.browser ||
-      window.chrome;
-    }());
+  window.browser = (function () {
+    return window.msBrowser || window.browser || window.chrome;
+  })();
 }
 
 prefixBrowser();
-
-console.log(cookie, badgeManager, tabs, message, localStorage, extensions);
 
 export default {
   cookie: cookie,
