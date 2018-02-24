@@ -15,11 +15,6 @@ function prefixBrowser() {
 prefixBrowser();
 
 /**
- * @author Zachary Caceres <[Website](http://zachcaceres.com) | [Twitter](www.twitter.com/zachcaceres) | [GitHub](www.github.com/zcaceres>)
- * @copyright MIT
- */
-
-/**
  * Manage cookies in the browser
  * @module cookie
  */
