@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "build": "babel src --out-dir lib",
-    "docs": "documentation serve --watch ./src/index.js"
+    "docs": "documentation serve --watch ./src/index.js",
+    "readme": "documentation readme ./src/index.js --section=API"
   },
   "author": "Zachary Caceres (@zachcaceres | zachcaceres.com)",
   "license": "MIT",

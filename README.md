@@ -42,7 +42,6 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [set](#set-1)
     -   [getAll](#getall-2)
     -   [remove](#remove)
--   [index](#index)
 -   [BadgeManager](#badgemanager)
     -   [add](#add)
     -   [subtract](#subtract)
@@ -301,14 +300,6 @@ Remove a cookie by name for a given url
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Promise resolved with details of cookie that has been removed or rejected with error
 
-### index
-
-**Meta**
-
--   **copyright**: MIT
-
--   **author**: Zachary Caceres &lt;\[Website](http&#x3A;//zachcaceres.com) | \[Twitter](www.twitter.com/zachcaceres) | \[GitHub](www.github.com/zcaceres>)
-
 ### BadgeManager
 
 A BadgeManager object for controlling the badges on your extension's Browser Action toolbar icon.
@@ -345,5 +336,7 @@ Clear your badge
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** nothing
 
 ## Something broken?
+
 Go bother:
-> Zachary Caceres ([Website](http://zachcaceres.com) | [Twitter](www.twitter.com/zachcaceres) | [GitHub](www.github.com/zcaceres))
+
+> Zachary Caceres ([Website](http://zachcaceres.com) \| [Twitter](www.twitter.com/zachcaceres) \| [GitHub](www.github.com/zcaceres))
