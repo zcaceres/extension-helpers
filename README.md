@@ -343,3 +343,7 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 Clear your badge
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** nothing
+
+## Something broken?
+Go bother:
+> Zachary Caceres ([Website](http://zachcaceres.com) | [Twitter](www.twitter.com/zachcaceres) | [GitHub](www.github.com/zcaceres))
