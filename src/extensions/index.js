@@ -2,6 +2,7 @@
 
 /**
  * Enable (activate) a browser extension
+ * @memberof extension
  * @param  {String} id The browser-assigned id of the extension
  * @return {Promise<Boolean>} Promise resolved with true if successful or rejected with error
  */
@@ -20,6 +21,7 @@ function enable(id) {
 
 /**
  * Disable (deactivate) a browser extension
+ * @memberof extension
  * @param  {String} id The Browser-assigned id of the extension
  * @return {Promise<Boolean>} Promise resolved with true if successful or rejected with error
  */
@@ -38,9 +40,10 @@ function disable(id) {
 
 /**
  * Get all currently installed browser extension
+ * @memberof extension
  * @return {Promise<Array<ExtensionInfo>>} Promise resolved with array of browser extension information objects, or rejected with error
  */
-function getAll () {
+function getAll() {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.management.getAll((extensionInfoArr) => {
@@ -56,6 +59,7 @@ function getAll () {
 
 /**
  * Get a browser by extension id
+ * @memberof extension
  * @param  {String} id Browser-assigned extension id
  * @return {Promise<ExtensionInfo>} Promise resolved with browser extension information object or rejected with an error
  */

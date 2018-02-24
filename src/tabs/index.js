@@ -2,6 +2,7 @@
 
 /**
  * Forces browser focus on given tab
+ * @memberof tabs
  * @param {number | Array<number>} tabId id of chrome tab
  * @returns {Promise<Object>} resolved with tabDetails object or rejected with error
  */
@@ -20,6 +21,7 @@ function focus(tabId) {
 
 /**
  * Closes a tab by tab id
+ * @memberof tabs
  * @param  {number}  tabIds an array
  * @return {Promise<undefined>} Promise resolved with undefined or rejected with error
  */
@@ -38,6 +40,7 @@ function close(tabIds) {
 
 /**
  * Gets currently active tab (the tab focused in current browser window)
+ * @memberof tabs
  * @return {Promise<Object>} tab object
  */
 function getActive() {
@@ -59,6 +62,7 @@ function getActive() {
 
 /**
  * Execute a file or code on a given tab
+ * @memberof tabs
  * @param  {String} toInject file name or raw code to execute
  * @param  {String} typeToInject valid params are "code" or "file"
  * @return {Promise<Object>} any results of the injected code's execution
@@ -71,6 +75,7 @@ function executeOnActive(toInject, typeToInject) {
 
 /**
  * Open a new tab optionally blurred or focused, and return the new tab's id.
+ * @memberof tabs
  * @param  {String} url the url you want the new tab to show
  * @param  {Boolean} active should browser focus on the new tab
  * @return {Promise<Object>} resolved with the newly opened tab or rejected with error
@@ -90,6 +95,7 @@ function open(url, active) {
 
 /**
  * Get active tabs in all browser windows
+ * @memberof tabs
  * @return {Promise<Array<Object>>} Promise resolved with an array of all active tab objects or rejected with an error
  */
 function getAllActive() {
@@ -107,6 +113,7 @@ function getAllActive() {
 
 /**
  * Get all tabs
+ * @memberof tabs
  * @return {Promise<Array<Object>>} Promise resolved with all tabs or rejected with an error
  */
 function getAll() {
@@ -124,6 +131,7 @@ function getAll() {
 
 /**
  * Execute raw js or a script by filename on all tabs
+ * @memberof tabs
  * @param  {String} toInject file name or raw code to execute
  * @param  {String} typeToInject valid params are "code" or "file"
  * @return {Array<Promise<Object>>} Array Promises resolved with any results of the injected code's execution or rejected with an error
@@ -141,6 +149,7 @@ function executeOnAll(toInject, typeToInject) {
 
 /**
  * Executes a file or inline code as a string on all the active tabs of all windows.
+ * @memberof tabs
  * @param  {String} toInject file name or raw code to execute
  * @param  {String} typeToInject valid params are "code" or "file"
  * @return {Array<Promise<Object>>} Array Promises resolved with any results of the injected code's execution or rejected with an error
@@ -159,6 +168,7 @@ function executeOnAllActive(toInject, typeToInject) {
 /**
  * Executes a script.
  * @private
+ * @memberof tabs
  * @param  {Number} tabId id of tab to execute script
  * @param  {String} toInject file name or raw code to execute
  * @param  {String} typeToInject valid params are "code" or "file"

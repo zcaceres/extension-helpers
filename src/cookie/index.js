@@ -3,9 +3,10 @@
 /**
  * Get a cookie by name for a given url.
  * @see [How Chrome handles](https://developer.chrome.com/extensions/cookies#method-get) cookies with the same name
+ * @memberof cookie
  * @param  {String} url             URL of site to get cookie from
  * @param  {String} name            Name of cookie to get
- * @param  {String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @param  {?String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
  * @return {Promise<Cookie>}        Promise resolved with Cookie object or rejected with error
  */
 function get(url, name, optionalStoreId) {
@@ -24,11 +25,12 @@ function get(url, name, optionalStoreId) {
 
 /**
  * Set a cookie by name for a given url.
+ * @memberof cookie
  * @see [How Chrome handles](https://developer.chrome.com/extensions/cookies#method-set) cookies with the same name
  * @param  {String} url             URL of site to get cookie from
  * @param  {String} name            Name of cookie to get
  * @param  {String} value           Value of cookie
- * @param  {Object} optionalParamsObj See [Chrome docs](https://developer.chrome.com/extensions/cookies#method-set) for details of this object
+ * @param  {?Object} optionalParamsObj See [Chrome docs](https://developer.chrome.com/extensions/cookies#method-set) for details of this object
  * @return {Promise<Cookie>}        Promise resolved with Cookie object or rejected with error
  */
 function set(url, name, value, optionalParamsObj) {
@@ -48,9 +50,10 @@ function set(url, name, value, optionalParamsObj) {
 
 /**
  * Get all cookies by name for a given url
- * @param  {String} url               Optional url to get cookies from
- * @param  {String} name              Optional name of cookie to get from url
- * @param  {Object} optionalParamsObj Optional parameters, see [Chrome docs](https://developer.chrome.com/extensions/cookies#method-getAll) for specifics of other params
+ * @memberof cookie
+ * @param  {?String} url               Optional url to get cookies from
+ * @param  {?String} name              Optional name of cookie to get from url
+ * @param  {?Object} optionalParamsObj Optional parameters, see [Chrome docs](https://developer.chrome.com/extensions/cookies#method-getAll) for specifics of other params
  * @return {Promise<Array<Cookie>>}   Promise resolved with array of Cookie objects or rejected with an error
  */
 function getAll(url, name, optionalParamsObj) {
@@ -71,8 +74,9 @@ function getAll(url, name, optionalParamsObj) {
 /**
  * Remove a cookie by name for a given url
  * @param  {String} url             URL of site to remove cookie from
+ * @memberof cookie
  * @param  {String} name            Name of cookie to remove
- * @param  {String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @param  {?String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
  * @return {Promise<Object>}        Promise resolved with details of cookie that has been removed or rejected with error
  */
 function remove(url, name, optionalStoreId) {
