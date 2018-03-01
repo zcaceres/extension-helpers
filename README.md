@@ -15,6 +15,8 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 #### Table of Contents
 
 -   [history](#history)
+    -   [search](#search)
+    -   [getVisits](#getvisits)
 -   [extension](#extension)
     -   [self](#self)
     -   [permissionWarningsById](#permissionwarningsbyid)
@@ -52,12 +54,33 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [add](#add)
     -   [subtract](#subtract)
     -   [clear](#clear)
--   [search](#search)
--   [getVisits](#getvisits)
 
 ### history
 
 Search and manage browser history
+
+#### search
+
+Search the browser history for last visit time of each page matching the query
+
+**Parameters**
+
+-   `text` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A free-text query to the history service. Leave empty to retrieve all pages.
+-   `optionalStartTime` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Double. Limit results to those visited after this date, represented in milliseconds since the epoch. If not specified, this defaults to 24 hours in the past.
+-   `optionalEndTime` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Double. Limit results to those visited before this date, represented in milliseconds since the epoch.
+-   `optionalMaxResults` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Integer. The maximum number of results to retrieve. Defaults to 100.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;HistoryItem>>** Promise that resolves with array of HistoryItem objects or rejects with error
+
+#### getVisits
+
+Gets information about visits to a url
+
+**Parameters**
+
+-   `url` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Must be fully qualified url including protocol
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;VisitItem>>** Promise that resolves with array of VisitItems or rejects with an error
 
 ### extension
 
@@ -389,29 +412,6 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 Clear your badge
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** nothing
-
-### search
-
-Search the browser history for last visit time of each page matching the query
-
-**Parameters**
-
--   `text` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A free-text query to the history service. Leave empty to retrieve all pages.
--   `optionalStartTime` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Double. Limit results to those visited after this date, represented in milliseconds since the epoch. If not specified, this defaults to 24 hours in the past.
--   `optionalEndTime` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Double. Limit results to those visited before this date, represented in milliseconds since the epoch.
--   `optionalMaxResults` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Integer. The maximum number of results to retrieve. Defaults to 100.
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;HistoryItem>>** Promise that resolves with array of HistoryItem objects or rejects with error
-
-### getVisits
-
-Gets information about visits to a url
-
-**Parameters**
-
--   `url` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Must be fully qualified url including protocol
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;VisitItem>>** Promise that resolves with array of VisitItems or rejects with an error
 
 ## Something broken?
 
