@@ -2,6 +2,7 @@ import cookie from './cookie';
 import badgeManager from './badge';
 import tabs from './tabs';
 import message from './message';
+import history from './history';
 import localStorage from './localStorage';
 import extensions from './extensions';
 
@@ -39,11 +40,17 @@ prefixBrowser();
   * @module extension
   */
 
+/**
+  * Search and manage browser history
+  * @module history
+  */
+
 export default {
   cookie,
   badgeManager,
   tabs,
   message,
+  history,
   localStorage,
   extensions
 };
