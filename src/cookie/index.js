@@ -12,7 +12,7 @@
 function get(url, name, optionalStoreId) {
   if (chrome) {
     return new Promise((resolve, reject) => {
-      chrome.cookies.get({ url, name, storeId: optionalStoreId }, function (cookie) {
+      chrome.cookies.get({ url, name, storeId: optionalStoreId }, function(cookie) {
         const err = browser.runtime.lastError;
         if (err) return reject(err);
         resolve(cookie);

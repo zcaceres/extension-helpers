@@ -15,6 +15,9 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 #### Table of Contents
 
 -   [extension](#extension)
+    -   [self](#self)
+    -   [permissionWarningsById](#permissionwarningsbyid)
+    -   [permissionWarningsByManifest](#permissionwarningsbymanifest)
     -   [enable](#enable)
     -   [disable](#disable)
     -   [getAll](#getall)
@@ -37,6 +40,8 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [getAll](#getall-1)
     -   [executeOnAll](#executeonall)
     -   [executeOnAllActive](#executeonallactive)
+    -   [getCurrent](#getcurrent)
+    -   [reload](#reload)
 -   [cookie](#cookie)
     -   [get](#get-2)
     -   [set](#set-1)
@@ -50,6 +55,32 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 ### extension
 
 Enable, disable, and manage other browser extensions
+
+#### self
+
+Get information about the calling extension
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;ExtensionInfo>** Object with info about the extension
+
+#### permissionWarningsById
+
+Get a list of permission warnings for the given extension id
+
+**Parameters**
+
+-   `id` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The browser-assigned id of the extension
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** Promised resolved with array of permission warnings or rejected with error
+
+#### permissionWarningsByManifest
+
+Get a list of permission warnings for the given extension manifest string
+
+**Parameters**
+
+-   `manifestStr` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Extension manifest JSON string.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** Promised resolved with array of permission warnings or rejected with error
 
 #### enable
 
@@ -241,7 +272,24 @@ Executes a file or inline code as a string on all the active tabs of all windows
 -   `toInject` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** file name or raw code to execute
 -   `typeToInject` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** valid params are "code" or "file"
 
-Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>>** Array Promises resolved with any results of the injected code's execution or rejected with an error
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>>** Array of Promises resolved with any results of the injected code's execution or rejected with an error
+
+#### getCurrent
+
+Get tab that the script call is being made from
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Tab>** Promise that resolves with Tab or rejects with error
+
+#### reload
+
+Reloads a tab by id. Optionally bypasses cache.
+
+**Parameters**
+
+-   `tabId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Id of tab to reload
+-   `bypassCache` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Bypass local web cache
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Bypass
 
 ### cookie
 
@@ -339,4 +387,4 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 
 Go bother:
 
-> Zachary Caceres ([Website](http://zachcaceres.com) \| [Twitter](www.twitter.com/zachcaceres) \| [GitHub](www.github.com/zcaceres))
+> Zachary Caceres ([Twitter](https://www.twitter.com/zachcaceres) \| [GitHub](https://www.github.com/zcaceres) \| [Website](http://zachcaceres.com) )
