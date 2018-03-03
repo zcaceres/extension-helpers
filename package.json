@@ -1,6 +1,6 @@
 {
   "name": "extension-helpers",
-  "version": "1.0.85",
+  "version": "1.0.86",
   "description": "Promisified, cross-browser wrappers and helpers for extension APIs.",
   "main": "lib/index.js",
   "scripts": {

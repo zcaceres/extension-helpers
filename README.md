@@ -15,6 +15,11 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 #### Table of Contents
 
 -   [alarms](#alarms)
+    -   [create](#create)
+    -   [get](#get)
+    -   [getAll](#getall)
+    -   [clear](#clear)
+    -   [clearAll](#clearall)
 -   [history](#history)
     -   [search](#search)
     -   [getVisits](#getvisits)
@@ -28,11 +33,11 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [permissionWarningsByManifest](#permissionwarningsbymanifest)
     -   [enable](#enable)
     -   [disable](#disable)
-    -   [getAll](#getall)
-    -   [get](#get)
+    -   [getAll](#getall-1)
+    -   [get](#get-1)
 -   [localStorage](#localstorage)
     -   [set](#set)
-    -   [get](#get-1)
+    -   [get](#get-2)
 -   [message](#message)
     -   [tab](#tab)
     -   [allTabs](#alltabs)
@@ -46,25 +51,72 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [executeOnActive](#executeonactive)
     -   [open](#open)
     -   [getAllActive](#getallactive)
-    -   [getAll](#getall-1)
+    -   [getAll](#getall-2)
     -   [executeOnAll](#executeonall)
     -   [executeOnAllActive](#executeonallactive)
     -   [getCurrent](#getcurrent)
     -   [reload](#reload)
 -   [cookie](#cookie)
-    -   [get](#get-2)
+    -   [get](#get-3)
     -   [set](#set-1)
-    -   [getAll](#getall-2)
+    -   [getAll](#getall-3)
     -   [remove](#remove)
     -   [getAllCookieStores](#getallcookiestores)
 -   [BadgeManager](#badgemanager)
     -   [add](#add)
     -   [subtract](#subtract)
-    -   [clear](#clear)
+    -   [clear](#clear-1)
 
 ### alarms
 
 Schedule code to run at a specific time.
+
+#### create
+
+-   **See: [Firefox Alarms](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/alarms/create) or [Chrome Alarms](https://developer.chrome.com/extensions/alarms#method-create)**
+
+Creates a new alarm.
+
+**Parameters**
+
+-   `name` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional name to identify alarm.
+-   `optionalParams` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Object of shape { when: {Number}, delayInMinutes: {Number}, periodInMinutes: {Number} }. Describes when the alarm should fire. The initial time must be specified by either when or delayInMinutes (but not both). If periodInMinutes is set, the alarm will repeat every periodInMinutes minutes after the initial event. If neither when or delayInMinutes is set for a repeating alarm, periodInMinutes is used as the default for delayInMinutes.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error.
+
+#### get
+
+Gets an alarm, given its name.
+
+**Parameters**
+
+-   `name` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional. The name of the alarm to get. Defaults to the empty string.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;Alarm>** A Promise resolved with an Alarm object or rejected with an error. If resolved, value represents the alarm whose name matches name. If no alarms match, this will be undefined.
+
+#### getAll
+
+Gets all active alarms for the extension.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Alarm>>** Promise resolved with an array of Alarm objects or rejected with an error. Resolves with empty array if no alarms are active.
+
+#### clear
+
+Clears the alarm with the given name.
+
+**Parameters**
+
+-   `name` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the alarm to cancel. Default is empty string.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>** Promise resolved with true if alarm was cleared or false if not cleared, or rejected with an error.
+
+#### clearAll
+
+-   **See: [MDN on clearAll](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/alarms/clearAll)**
+
+Cancels all active alarms.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>** Promise resolved with true if any alarms were cleared or false otherwise. Or, rejected with an error.
 
 ### history
 

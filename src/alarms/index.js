@@ -2,8 +2,8 @@
 
 /**
  * Creates a new alarm.
- * @memberof alarms
  * @see [Firefox Alarms](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/alarms/create) or [Chrome Alarms](https://developer.chrome.com/extensions/alarms#method-create)
+ * @memberof alarms
  * @param  {?String} name           Optional name to identify alarm.
  * @param  {?Object} optionalParams Object of shape { when: {Number}, delayInMinutes: {Number}, periodInMinutes: {Number} }. Describes when the alarm should fire. The initial time must be specified by either when or delayInMinutes (but not both). If periodInMinutes is set, the alarm will repeat every periodInMinutes minutes after the initial event. If neither when or delayInMinutes is set for a repeating alarm, periodInMinutes is used as the default for delayInMinutes.
  * @return {Promise<undefined>}     Promise resolved with undefined or rejected with an error.
