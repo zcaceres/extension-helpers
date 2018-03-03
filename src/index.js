@@ -45,6 +45,11 @@ prefixBrowser();
   * @module history
   */
 
+/**
+ * Schedule code to run at a specific time.
+ * @module alarms
+ */
+
 export default {
   cookie,
   badgeManager,
