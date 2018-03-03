@@ -43,6 +43,16 @@ function activeTabs(message) {
 }
 
 /**
+ * Send a message to an array of tabs
+ * @param  {Array<Tab>} tabArr                Array of Tab objects to send message to
+ * @param  {Object} message                   Any valid JSON-ifiable object
+ * @return {Promise<Array<Object>>}           Promise resolved with array of responses from messages or rejected with an error
+ */
+function manyTabs(tabArr, message) {
+  return Promise.all(tabArr.map(tab => sendMessage(tab.id, message)));
+}
+
+/**
  * Send message to active (focused) tab in the current window.
  * @memberof message
  * @param  {Object} message Any valid JSON-ifiable object
@@ -78,5 +88,6 @@ export default {
   tab,
   activeTab,
   allTabs,
+  manyTabs,
   activeTabs
 };
