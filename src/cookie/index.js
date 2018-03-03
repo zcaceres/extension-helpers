@@ -94,9 +94,28 @@ function remove(url, name, optionalStoreId) {
   }
 }
 
+/**
+ * Lists all existing cookie stores.
+ * @return {Promise<Array<CookieStore>>} Promise resolved with an array of CookieStore objects or rejected with an error.
+ */
+function getAllCookieStores() {
+  if (chrome) {
+    return new Promise((resolve, reject) => {
+      chrome.cookies.getAllCookieStores(function(cookieStores) {
+        const err = chrome.runtime.lastError;
+        if (err) return reject(err);
+        resolve(cookieStores);
+      });
+    });
+  } else {
+    return browser.cookies.getAllCookieStores();
+  }
+}
+
 export default {
   get,
   getAll,
+  getAllCookieStores,
   set,
   remove
 };
