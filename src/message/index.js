@@ -44,6 +44,7 @@ function activeTabs(message) {
 
 /**
  * Send a message to an array of tabs
+ * @memberof message
  * @param  {Array<Tab>} tabArr                Array of Tab objects to send message to
  * @param  {Object} message                   Any valid JSON-ifiable object
  * @return {Promise<Array<Object>>}           Promise resolved with array of responses from messages or rejected with an error

@@ -96,6 +96,7 @@ function remove(url, name, optionalStoreId) {
 
 /**
  * Lists all existing cookie stores.
+ * @memberof cookie
  * @return {Promise<Array<CookieStore>>} Promise resolved with an array of CookieStore objects or rejected with an error.
  */
 function getAllCookieStores() {

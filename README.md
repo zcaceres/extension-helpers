@@ -14,9 +14,14 @@ Note: Many APIs are not supported in Edge. Check their documentation.
 
 #### Table of Contents
 
+-   [alarms](#alarms)
 -   [history](#history)
     -   [search](#search)
     -   [getVisits](#getvisits)
+    -   [addUrl](#addurl)
+    -   [deleteUrl](#deleteurl)
+    -   [deleteRange](#deleterange)
+    -   [deleteAll](#deleteall)
 -   [extension](#extension)
     -   [self](#self)
     -   [permissionWarningsById](#permissionwarningsbyid)
@@ -32,6 +37,7 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [tab](#tab)
     -   [allTabs](#alltabs)
     -   [activeTabs](#activetabs)
+    -   [manyTabs](#manytabs)
     -   [activeTab](#activetab)
 -   [tabs](#tabs)
     -   [focus](#focus)
@@ -50,10 +56,15 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [set](#set-1)
     -   [getAll](#getall-2)
     -   [remove](#remove)
+    -   [getAllCookieStores](#getallcookiestores)
 -   [BadgeManager](#badgemanager)
     -   [add](#add)
     -   [subtract](#subtract)
     -   [clear](#clear)
+
+### alarms
+
+Schedule code to run at a specific time.
 
 ### history
 
@@ -81,6 +92,45 @@ Gets information about visits to a url
 -   `url` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Must be fully qualified url including protocol
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;VisitItem>>** Promise that resolves with array of VisitItems or rejects with an error
+
+#### addUrl
+
+Chrome: Adds a URL to the history at the current time with a transition type of "link".
+Firefox: Adds a record to the browser's history of a visit to the given URL. The visit's time is recorded as the time of the call, and the TransitionType is recorded as "link".
+
+**Parameters**
+
+-   `url` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The URL to add
+-   `optionalParams` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Firefox only. Object with shape { title: {String}, transition: {TransitionType}, visitTime: {Number | String | Object} }. All optional.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error.
+
+#### deleteUrl
+
+Removes all visits to the given URL from the browser history.
+
+**Parameters**
+
+-   `url` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The URL whose visits should be removed.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error;
+
+#### deleteRange
+
+Removes all items within the specified date range from the history. Pages will not be removed from the history unless all visits fall within the range.
+
+**Parameters**
+
+-   `startTime` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date))** Items added to history after this date, represented in milliseconds since the epoch.
+-   `endTime` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Date](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date))** Items added to history before this date, represented in milliseconds since the epoch.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error.
+
+#### deleteAll
+
+Deletes all items from the history.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error.
 
 ### extension
 
@@ -207,6 +257,17 @@ Sends a message to tabs that are considered 'active' (focused) for all open brow
 -   `message` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Any valid JSON-ifiable object
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Tab>>** Promise resolved with array of tabs that were sent the message or rejected with an error
+
+#### manyTabs
+
+Send a message to an array of tabs
+
+**Parameters**
+
+-   `tabArr` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;Tab>** Array of Tab objects to send message to
+-   `message` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Any valid JSON-ifiable object
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>>** Promise resolved with array of responses from messages or rejected with an error
 
 #### activeTab
 
@@ -377,6 +438,12 @@ Remove a cookie by name for a given url
 -   `optionalStoreId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Promise resolved with details of cookie that has been removed or rejected with error
+
+#### getAllCookieStores
+
+Lists all existing cookie stores.
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;CookieStore>>** Promise resolved with an array of CookieStore objects or rejected with an error.
 
 ### BadgeManager
 

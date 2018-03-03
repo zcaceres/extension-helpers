@@ -88,6 +88,7 @@ function deleteUrl(url) {
 
 /**
  * Sanitizes dates to numbers. String Object or Number.
+ * @private
  */
 function sanitizeDate(date) {
   return Number(date);
