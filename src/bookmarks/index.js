@@ -42,39 +42,39 @@ function getChildrenById(id) {
 
 }
 
-function getRecent() {
-
-}
-
-function getSubtree() {
-
-}
-
-function getTree() {
-
-}
-
-function move() {
-
-}
-
-function remove() {
-
-}
-
-function removeTree() {
-
-}
-
-function search() {
-
-}
-
-function update() {
-
-}
+// function getRecent() {
+//
+// }
+//
+// function getSubtree() {
+//
+// }
+//
+// function getTree() {
+//
+// }
+//
+// function move() {
+//
+// }
+//
+// function remove() {
+//
+// }
+//
+// function removeTree() {
+//
+// }
+//
+// function search() {
+//
+// }
+//
+// function update() {
+//
+// }
 
 export default {
   getById,
-  getChildrenById,
+  getChildrenById
 };

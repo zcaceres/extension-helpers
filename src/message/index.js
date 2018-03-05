@@ -16,14 +16,11 @@ function tab(tabId, message) {
  * Sends a message to all tabs in any window
  * @memberof message
  * @param  {Object} message Any valid JSON-ifiable object
- * @return {Promise<Array<Tab>>} Promise resolved with array of tabs that were sent the message or rejected with an error
+ * @return {Promise<Array<Tab>>} Promise resolved with array of responses from tabs that were sent a message or rejected with an error
  */
 function allTabs(message) {
   return tabs.getAll().then(tabs => {
-    tabs.forEach(tab => {
-      sendMessage(tab.id, message);
-    });
-    return tabs;
+    return manyTabs(tabs, message);
   });
 }
 
@@ -31,14 +28,11 @@ function allTabs(message) {
  * Sends a message to tabs that are considered 'active' (focused) for all open browser windows
  * @memberof message
  * @param  {Object} message Any valid JSON-ifiable object
- * @return {Promise<Array<Tab>>} Promise resolved with array of tabs that were sent the message or rejected with an error
+ * @return {Promise<Array<Tab>>} Promise resolved with array of responses from tabs that were sent a message rejected with an error
  */
 function activeTabs(message) {
   return tabs.getAllActive().then(tabs => {
-    tabs.forEach(tab => {
-      sendMessage(tab.id, message);
-    });
-    return tabs;
+    return manyTabs(tabs, message);
   });
 }
 
