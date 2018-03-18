@@ -1,4 +1,5 @@
 /* global browser chrome */
+import { PromiseFactory } from '../utils';
 
 /**
  * Get information about the calling extension
@@ -6,17 +7,7 @@
  * @return {Promise<ExtensionInfo>} Object with info about the extension
  */
 function self() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.management.getSelf((extensionInfo) => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(extensionInfo);
-      });
-    });
-  } else {
-    return browser.management.getSelf();
-  }
+  return PromiseFactory(chrome.management.getSelf, browser.management.getSelf);
 }
 
 /**
@@ -26,17 +17,7 @@ function self() {
  * @return {Promise<Array<String>>}    Promised resolved with array of permission warnings or rejected with error
  */
 function permissionWarningsById(id) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.management.getPermissionWarningsById(id, (permissionWarnings) => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(permissionWarnings);
-      });
-    });
-  } else {
-    return browser.management.getPermissionWarningsById(id);
-  }
+  return PromiseFactory(chrome.management.getPermissionWarningsById, browser.management.getPermissionWarningsById, id);
 }
 
 /**
@@ -46,17 +27,7 @@ function permissionWarningsById(id) {
  * @return {Promise<Array<String>>}     Promised resolved with array of permission warnings or rejected with error
  */
 function permissionWarningsByManifest(manifestStr) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.management.getPermissionWarningsByManifest(manifestStr, (permissionWarnings) => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(permissionWarnings);
-      });
-    });
-  } else {
-    return browser.management.getPermissionWarningsByManifest(manifestStr);
-  }
+  return PromiseFactory(chrome.management.getPermissionWarningsByManifest, browser.management.getPermissionWarningsByManifest, manifestStr);
 }
 
 /**
@@ -66,16 +37,7 @@ function permissionWarningsByManifest(manifestStr) {
  * @return {Promise<Boolean>} Promise resolved with true if successful or rejected with error
  */
 function enable(id) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      const err = chrome.runtime.lastError;
-      if (err) return reject(err);
-      chrome.management.setEnabled(id, true);
-      resolve(true);
-    });
-  } else {
-    return browser.management.setEnabled(id, true);
-  }
+  return PromiseFactory(chrome.management.setEnabled, browser.management.setEnabled, id, true);
 }
 
 /**
@@ -85,16 +47,7 @@ function enable(id) {
  * @return {Promise<Boolean>} Promise resolved with false if successful or rejected with error
  */
 function disable(id) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      const err = chrome.runtime.lastError;
-      if (err) return reject(err);
-      chrome.management.setEnabled(id, false);
-      resolve(false);
-    });
-  } else {
-    return browser.management.setEnabled(id, false);
-  }
+  return PromiseFactory(chrome.management.setEnabled, browser.management.setEnabled, id, false);
 }
 
 /**
@@ -103,17 +56,7 @@ function disable(id) {
  * @return {Promise<Array<ExtensionInfo>>} Promise resolved with array of browser extension information objects, or rejected with error
  */
 function getAll() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.management.getAll((extensionInfoArr) => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(extensionInfoArr);
-      });
-    });
-  } else {
-    return browser.management.getAll();
-  }
+  return PromiseFactory(chrome.management.getAll, browser.management.getAll);
 }
 
 /**
@@ -123,18 +66,7 @@ function getAll() {
  * @return {Promise<ExtensionInfo>} Promise resolved with browser extension information object or rejected with an error
  */
 function get(id) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.management.get(id, (extensionInfo) => {
-        // ExtensionInfo object
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(extensionInfo);
-      });
-    });
-  } else {
-    return browser.management.get(id);
-  }
+  return PromiseFactory(chrome.management.get, browser.management.get, id);
 }
 
 export default {
