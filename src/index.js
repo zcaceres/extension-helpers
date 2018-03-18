@@ -7,6 +7,7 @@ import history from './history';
 import alarms from './alarms';
 import localStorage from './localStorage';
 import extensions from './extensions';
+import wallpaper from './wallpaper';
 import windows from './windows';
 
 // Prefix for Edge/Firefox/Chrome to access browser apis
@@ -26,6 +27,11 @@ prefixBrowser();
 /**
  * Manage cookies in the browser
  * @module cookie
+ */
+
+/**
+ * Manage wallpapers
+ * @module wallpaper
  */
 
 /**
@@ -73,5 +79,6 @@ export default {
   localStorage,
   message,
   tabs,
+  wallpaper,
   windows
 };
