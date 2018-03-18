@@ -7,6 +7,7 @@ import history from './history';
 import alarms from './alarms';
 import localStorage from './localStorage';
 import extensions from './extensions';
+import windows from './windows';
 
 // Prefix for Edge/Firefox/Chrome to access browser apis
 function prefixBrowser() {
@@ -25,6 +26,11 @@ prefixBrowser();
 /**
  * Manage cookies in the browser
  * @module cookie
+ */
+
+/**
+ * Manage browser windows
+ * @module windows
  */
 
 /**
@@ -58,13 +64,13 @@ prefixBrowser();
  */
 
 export default {
+  alarms,
   badgeManager,
   // bookmarks,
   cookie,
-  tabs,
-  alarms,
-  message,
+  extensions,
   history,
   localStorage,
-  extensions
+  message,
+  tabs
 };

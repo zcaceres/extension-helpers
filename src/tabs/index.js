@@ -1,4 +1,5 @@
 /* global browser chrome */
+import { PromiseFactory } from '../utils';
 
 /**
  * Forces browser focus on given tab
@@ -81,16 +82,7 @@ function executeOnActive(toInject, typeToInject) {
  * @return {Promise<Object>} resolved with the newly opened tab or rejected with error
  */
 function open(url, active) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.create({ url, active }, function(tab) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(tab);
-      });
-    });
-  }
-  return browser.tabs.create({ url, active });
+  return PromiseFactory(chrome.tabs.create, browser.tabs.create, { url, active });
 }
 
 /**
@@ -99,16 +91,7 @@ function open(url, active) {
  * @return {Promise<Array<Object>>} Promise resolved with an array of all active tab objects or rejected with an error
  */
 function getAllActive() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.query({ active: true }, function(tabs) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(tabs);
-      });
-    });
-  }
-  return browser.tabs.query({ active: true });
+  return PromiseFactory(chrome.tabs.query, browser.tabs.query, { active: true });
 }
 
 /**
