@@ -41,4 +41,4 @@ class BadgeManager {
   }
 }
 
-export default BadgeManager;
+module.exports = BadgeManager;

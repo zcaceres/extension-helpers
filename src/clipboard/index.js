@@ -4,6 +4,6 @@ function setImageData() {
 
 }
 
-export default {
+module.exports = {
   setImageData
 };

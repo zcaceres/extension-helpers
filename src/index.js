@@ -1,18 +1,27 @@
-import cookie from './cookie';
-import badgeManager from './badge';
-// import bookmarks from './bookmarks';
-import tabs from './tabs';
-import message from './message';
-import history from './history';
-import alarms from './alarms';
-import localStorage from './localStorage';
-import extensions from './extensions';
+/* global window */
+const cookie = require('./cookie');
+const badgeManager = require('./badge');
+// const bookmarks = require('./bookmarks');
+const tabs = require('./tabs');
+const message = require('./message');
+const history = require('./history');
+const alarms = require('./alarms');
+const localStorage = require('./localStorage');
+const extensions = require('./extensions');
 
 // Prefix for Edge/Firefox/Chrome to access browser apis
 function prefixBrowser() {
-  window.browser = (function() {
-    return window.msBrowser || window.browser || window.chrome;
-  })();
+  if (process.env.NODE_ENV === 'test') {
+    global.browser = (function() {
+      return global.msBrowser || global.browser || global.chrome;
+    })();
+    const chrome = require('sinon-chrome');
+    global.chrome = chrome;
+  } else {
+    window.browser = (function() {
+      return window.msBrowser || window.browser || window.chrome;
+    })();
+  }
 }
 
 prefixBrowser();
@@ -57,7 +66,7 @@ prefixBrowser();
  * @module alarms
  */
 
-export default {
+module.exports = {
   badgeManager,
   // bookmarks,
   cookie,

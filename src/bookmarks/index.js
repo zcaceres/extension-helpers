@@ -74,7 +74,7 @@ function getChildrenById(id) {
 //
 // }
 
-export default {
+module.exports = {
   getById,
   getChildrenById
 };

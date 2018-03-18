@@ -100,7 +100,7 @@ function clearAll() {
   }
 }
 
-export default {
+module.exports = {
   clear,
   clearAll,
   create,

@@ -137,7 +137,7 @@ function deleteAll() {
   }
 }
 
-export default {
+module.exports = {
   addUrl,
   deleteUrl,
   deleteRange,

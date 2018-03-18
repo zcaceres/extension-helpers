@@ -137,7 +137,7 @@ function get(id) {
   }
 }
 
-export default {
+module.exports = {
   get,
   getAll,
   disable,

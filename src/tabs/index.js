@@ -10,6 +10,7 @@ function focus(tabId) {
   if (chrome) {
     return new Promise((resolve, reject) => {
       chrome.tabs.update(tabId, { active: true }, function(tabDetails) {
+        console.log('TAB DEETS', tabDetails)
         const err = chrome.runtime.lastError;
         if (err) return reject(err);
         resolve(tabDetails);
@@ -228,7 +229,7 @@ function executeScript(tabId, toInject, typeToInject) {
   return browser.tabs.executeScript(tabId, executionObj);
 }
 
-export default {
+module.exports = {
   open,
   close,
   focus,

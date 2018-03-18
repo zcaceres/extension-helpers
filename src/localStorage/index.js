@@ -41,7 +41,7 @@ function get(key) {
   }
 }
 
-export default {
+module.exports = {
   set,
   get
 };

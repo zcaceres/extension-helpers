@@ -113,7 +113,7 @@ function getAllCookieStores() {
   }
 }
 
-export default {
+module.exports = {
   get,
   getAll,
   getAllCookieStores,
