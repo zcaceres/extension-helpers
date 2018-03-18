@@ -1,4 +1,5 @@
 /* global browser chrome */
+import { PromiseFactory } from '../utils';
 
 /**
  * [getById description]
@@ -12,17 +13,7 @@
  */
 function getById(windowId, includeTabs, filterWindowTypes) {
   const getInfo = { populate: includeTabs, windowTypes: filterWindowTypes };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.windows.get(windowId, getInfo, function(foundWindow) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(foundWindow);
-      });
-    });
-  } else {
-    return browser.windows.get(windowId, getInfo);
-  }
+  return PromiseFactory(chrome.windows.get, browser.windows.get, windowId, getInfo);
 }
 
 export default {
