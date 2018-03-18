@@ -1,4 +1,5 @@
 /* global browser chrome: */
+import { PromiseFactory } from '../utils';
 
 /**
  * Search the browser history for last visit time of each page matching the query
@@ -11,17 +12,7 @@
  */
 function search(text, optionalStartTime, optionalEndTime, optionalMaxResults) {
   const queryObj = { text, startTime: optionalStartTime, endTime: optionalEndTime, maxResults: optionalMaxResults };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.search(queryObj, function(results) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(results);
-      });
-    });
-  } else {
-    return browser.history.search(queryObj);
-  }
+  return PromiseFactory(chrome.history.search, browser.history.search, queryObj);
 }
 
 /**
@@ -31,17 +22,7 @@ function search(text, optionalStartTime, optionalEndTime, optionalMaxResults) {
  * @return {Promise<Array<VisitItem>>}  Promise that resolves with array of VisitItems or rejects with an error
  */
 function getVisits(url) {
-  const details = { url };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.getVisits(details, function(results) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(results);
-      });
-    });
-  }
-  return browser.history.getVisits(details);
+  return PromiseFactory(chrome.history.getVisits, browser.history.getVisits, { url });
 }
 
 /**
@@ -53,17 +34,7 @@ function getVisits(url) {
  * @return {Promise<undefined>}        Promise resolved with undefined or rejected with an error.
  */
 function addUrl(url, optionalParams) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.addUrl({ url }, function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.history.addUrl({ url, ...optionalParams });
-  }
+  return PromiseFactory(chrome.history.addUrl, browser.history.addUrl, { url, ...optionalParams });
 }
 
 /**
@@ -73,17 +44,7 @@ function addUrl(url, optionalParams) {
  * @return {Promise<undefined>}     Promise resolved with undefined or rejected with an error;
  */
 function deleteUrl(url) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.deleteUrl({ url }, function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.history.deleteUrl({ url });
-  }
+  return PromiseFactory(chrome.history.deleteUrl, browser.history.deleteUrl, { url });
 }
 
 /**
@@ -105,17 +66,7 @@ function deleteRange(startTime, endTime) {
   // Must sanitize for Chrome because only Number (double) are supported but Firefox accepts String and Date objects as well.
   const sanitizedStart = sanitizeDate(startTime);
   const sanitizedEnd = sanitizeDate(endTime);
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.deleteRange({ startTime: sanitizedStart, endTime: sanitizedEnd }, function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.history.deleteRange({ startTime, endTime });
-  }
+  return PromiseFactory(chrome.history.deleteRange, browser.history.deleteRange, { startTime: sanitizedStart, endTime: sanitizedEnd });
 }
 
 /**
@@ -124,17 +75,7 @@ function deleteRange(startTime, endTime) {
  * @return {Promise<undefined>} Promise resolved with undefined or rejected with an error.
  */
 function deleteAll() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.history.deleteAll(function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.history.deleteAll();
-  }
+  return PromiseFactory(chrome.history.deleteAll, browser.history.deleteAll);
 }
 
 export default {
