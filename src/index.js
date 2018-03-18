@@ -72,5 +72,6 @@ export default {
   history,
   localStorage,
   message,
-  tabs
+  tabs,
+  windows
 };
