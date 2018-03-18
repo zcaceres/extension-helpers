@@ -1,4 +1,5 @@
 /* global chrome browser */
+import { PromiseFactory } from '../utils';
 
 /**
  * Get a cookie by name for a given url.
@@ -6,21 +7,11 @@
  * @memberof cookie
  * @param  {String} url             URL of site to get cookie from
  * @param  {String} name            Name of cookie to get
- * @param  {?String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @param  {?String} storeId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
  * @return {Promise<Cookie>}        Promise resolved with Cookie object or rejected with error
  */
-function get(url, name, optionalStoreId) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.cookies.get({ url, name, storeId: optionalStoreId }, function(cookie) {
-        const err = browser.runtime.lastError;
-        if (err) return reject(err);
-        resolve(cookie);
-      });
-    });
-  } else {
-    return browser.cookies.get({ url, name, storeId: optionalStoreId });
-  }
+function get(url, name, storeId) {
+  return PromiseFactory(chrome.cookies.get, browser.cookies.get, { url, name, storeId });
 }
 
 /**
@@ -35,17 +26,7 @@ function get(url, name, optionalStoreId) {
  */
 function set(url, name, value, optionalParamsObj) {
   const params = { url, name, value, ...optionalParamsObj };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.cookies.set(params, function(cookie) {
-        const err = chrome.runtime.lastError;
-        if (!cookie || err) return reject(err);
-        resolve(cookie);
-      });
-    });
-  } else {
-    return browser.cookies.set(params);
-  }
+  return PromiseFactory(chrome.cookies.set, browser.cookies.set, params);
 }
 
 /**
@@ -58,17 +39,7 @@ function set(url, name, value, optionalParamsObj) {
  */
 function getAll(url, name, optionalParamsObj) {
   const params = { url, name, ...optionalParamsObj };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.cookies.getAll(params, function(cookies) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(cookies);
-      });
-    });
-  } else {
-    return browser.cookies.getAll(params);
-  }
+  return PromiseFactory(chrome.getAll, browser.getAll, params);
 }
 
 /**
@@ -76,22 +47,12 @@ function getAll(url, name, optionalParamsObj) {
  * @param  {String} url             URL of site to remove cookie from
  * @memberof cookie
  * @param  {String} name            Name of cookie to remove
- * @param  {?String} optionalStoreId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
+ * @param  {?String} storeId The ID of the cookie store in which to look for the cookie. By default, the current execution context's cookie store will be used.
  * @return {Promise<Object>}        Promise resolved with details of cookie that has been removed or rejected with error
  */
-function remove(url, name, optionalStoreId) {
-  const params = { url, name, storeId: optionalStoreId };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.cookies.remove(params, function(details) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(details);
-      });
-    });
-  } else {
-    return browser.cookies.remove(params);
-  }
+function remove(url, name, storeId) {
+  const params = { url, name, storeId: storeId };
+  return PromiseFactory(chrome.cookies.remove, browser.cookies.remove, params);
 }
 
 /**
@@ -100,17 +61,7 @@ function remove(url, name, optionalStoreId) {
  * @return {Promise<Array<CookieStore>>} Promise resolved with an array of CookieStore objects or rejected with an error.
  */
 function getAllCookieStores() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.cookies.getAllCookieStores(function(cookieStores) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(cookieStores);
-      });
-    });
-  } else {
-    return browser.cookies.getAllCookieStores();
-  }
+  return PromiseFactory(chrome.cookies.getAllCookieStores, browser.cookies.getAllCookieStores);
 }
 
 export default {
