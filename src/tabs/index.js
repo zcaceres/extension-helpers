@@ -8,16 +8,7 @@ import { PromiseFactory } from '../utils';
  * @returns {Promise<Object>} resolved with tabDetails object or rejected with error
  */
 function focus(tabId) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.update(tabId, { active: true }, function(tabDetails) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(tabDetails);
-      });
-    });
-  }
-  return browser.tabs.update(tabId, { active: true });
+  return PromiseFactory(chrome.tabs.update, browser.tabs.update, tabId, { active: true });
 }
 
 /**
@@ -27,16 +18,7 @@ function focus(tabId) {
  * @return {Promise<undefined>} Promise resolved with undefined or rejected with error
  */
 function close(tabIds) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.remove(tabIds, function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  }
-  return browser.tabs.remove(tabIds);
+  return PromiseFactory(chrome.tabs.remove, browser.tabs.remove, tabIds);
 }
 
 /**
@@ -45,20 +27,11 @@ function close(tabIds) {
  * @return {Promise<Object>} tab object
  */
 function getActive() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        const [tab] = tabs;
-        resolve(tab);
-      });
+  return PromiseFactory(chrome.tabs.query, browser.tabs.query, { active: true, currentWindow: true })
+    .then(tabs => {
+      const [tab] = tabs;
+      return tab;
     });
-  }
-  return browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
-    const [tab] = tabs;
-    return tab;
-  });
 }
 
 /**
@@ -69,9 +42,10 @@ function getActive() {
  * @return {Promise<Object>} any results of the injected code's execution
  */
 function executeOnActive(toInject, typeToInject) {
-  return getActive(tab => {
-    return executeScript(tab.id, toInject, typeToInject);
-  });
+  return getActive()
+    .then(tab => {
+      return executeScript(tab.id, toInject, typeToInject);
+    });
 }
 
 /**
@@ -100,16 +74,7 @@ function getAllActive() {
  * @return {Promise<Array<Object>>} Promise resolved with all tabs or rejected with an error
  */
 function getAll() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.query({}, function(tabs) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(tabs);
-      });
-    });
-  }
-  return browser.tabs.query({});
+  return PromiseFactory(chrome.tabs.query, browser.tabs.query, {});
 }
 
 /**
@@ -154,16 +119,7 @@ function executeOnAllActive(toInject, typeToInject) {
  * @return {Promise<Tab>} Promise that resolves with Tab or rejects with error
  */
 function getCurrent() {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.getCurrent(function(tab) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(tab);
-      });
-    });
-  }
-  return browser.tabs.getCurrent();
+  return PromiseFactory(chrome.tabs.getCurrent, browser.tabs.getCurrent)
 }
 
 /**
@@ -174,18 +130,7 @@ function getCurrent() {
  * @return {Promise<undefined>}  Bypass
  */
 function reload(tabId, bypassCache) {
-  const reloadProperties = { bypassCache };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.reload(tabId, reloadProperties, function() {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.tabs.reload(tabId, reloadProperties);
-  }
+  return PromiseFactory(chrome.tabs.reload, browser.tabs.reload, { bypassCache });
 }
 
 /**
@@ -199,16 +144,7 @@ function reload(tabId, bypassCache) {
  */
 function executeScript(tabId, toInject, typeToInject) {
   const executionObj = { [typeToInject]: toInject };
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.tabs.executeScript(tabId, executionObj, results => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(results);
-      });
-    });
-  }
-  return browser.tabs.executeScript(tabId, executionObj);
+  return PromiseFactory(chrome.tabs.executeScript, browser.tabs.executeScript, tabId, executionObj);
 }
 
 export default {
