@@ -1,4 +1,5 @@
 /* global browser chrome */
+import { PromiseFactory } from '../utils';
 
 /**
  * Set a value at a given key in the extension's local storage
@@ -8,17 +9,7 @@
  * @return {Promise<undefined>} Promise resolved with nothing, or rejected with error
  */
 function set(key, value) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.storage.local.set({ [key]: value }, () => {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-  } else {
-    return browser.storage.local.set({ [key]: value });
-  }
+  return PromiseFactory(chrome.storage.local.set, browser.storage.local.set, { [key]: value });
 }
 
 /**
@@ -28,17 +19,7 @@ function set(key, value) {
  * @return {Promise<Object>}     Promise resolved with object with key-value mappings or rejected with an error
  */
 function get(key) {
-  if (chrome) {
-    return new Promise((resolve, reject) => {
-      chrome.storage.local.get(key, function(itemsObject) {
-        const err = chrome.runtime.lastError;
-        if (err) return reject(err);
-        resolve(itemsObject);
-      });
-    });
-  } else {
-    return browser.storage.local.get(key);
-  }
+  return PromiseFactory(chrome.storage.local.get, browser.storage.local.get, key);
 }
 
 export default {
