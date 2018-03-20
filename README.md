@@ -1,5 +1,7 @@
 # Browser Extension Helpers
 
+> Work in progress, PRS welcome
+
 Promisified, cross-browser wrappers and helpers for extension APIs.
 
 -   Normalized & Promisified: no more fussing with Chrome's irregular callbacks, all functions returns a promise
