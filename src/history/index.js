@@ -1,5 +1,5 @@
 /* global browser chrome: */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Search the browser history for last visit time of each page matching the query

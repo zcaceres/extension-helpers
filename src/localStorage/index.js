@@ -1,5 +1,5 @@
 /* global browser chrome */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Set a value at a given key in the extension's local storage

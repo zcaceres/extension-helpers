@@ -1,6 +1,6 @@
 /* global chrome browser */
 import tabs from '../tabs';
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Send a message directly to tab by id

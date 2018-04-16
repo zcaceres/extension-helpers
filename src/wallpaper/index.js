@@ -1,5 +1,5 @@
 /* global chrome browser */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * CHROME ONLY. Sets wallpaper to an image (url) or Array buffer (data).

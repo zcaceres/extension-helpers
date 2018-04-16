@@ -14,6 +14,4 @@ function PromiseFactory(chromeFunc, browserFunc, ...args) {
   }
 }
 
-export default {
-  PromiseFactory
-};
+export default PromiseFactory;

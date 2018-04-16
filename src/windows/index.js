@@ -1,5 +1,5 @@
 /* global browser chrome */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Get a window by id

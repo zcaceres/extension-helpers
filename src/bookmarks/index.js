@@ -1,5 +1,5 @@
 /* global chrome browser */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Retrieves BookmarkTreeNode(s) by id.

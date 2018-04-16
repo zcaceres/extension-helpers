@@ -1,5 +1,5 @@
 /* global chrome browser */
-import { PromiseFactory } from '../utils';
+import PromiseFactory from '../utils';
 
 /**
  * Get a cookie by name for a given url.
