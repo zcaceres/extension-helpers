@@ -6,6 +6,7 @@ import message from './message';
 import history from './history';
 import alarms from './alarms';
 import localStorage from './localStorage';
+import runtime from './runtime';
 import extensions from './extensions';
 import wallpaper from './wallpaper';
 import windows from './windows';
@@ -27,6 +28,11 @@ prefixBrowser();
 /**
  * Manage cookies in the browser
  * @module cookie
+ */
+
+/**
+ * Manage runtime tasks like messaging extensions
+ * @module runtime
  */
 
 /**
@@ -79,6 +85,7 @@ export default {
   localStorage,
   message,
   tabs,
+  runtime,
   wallpaper,
   windows
 };
