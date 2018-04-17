@@ -69,6 +69,8 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [deleteUrl](#deleteurl)
     -   [deleteRange](#deleterange)
     -   [deleteAll](#deleteall)
+-   [runtime](#runtime)
+    -   [sendMessage](#sendmessage)
 -   [cookie](#cookie)
     -   [get](#get-3)
     -   [set](#set-2)
@@ -560,6 +562,24 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 Deletes all items from the history.
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)>** Promise resolved with undefined or rejected with an error.
+
+### runtime
+
+Manage runtime tasks like messaging extensions
+
+#### sendMessage
+
+-   **See: <https://developer.chrome.com/extensions/runtime#method-sendMessage>**
+
+Sends a message to an extension identified by its id
+
+**Parameters**
+
+-   `extensionId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** optional extension id
+-   `msg` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Any JSON-ifiable object
+-   `options` **\[type]** options
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Promise resolved with response from tab or rejected with an error
 
 ### cookie
 
