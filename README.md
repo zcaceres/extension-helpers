@@ -78,18 +78,23 @@ Note: Many APIs are not supported in Edge. Check their documentation.
     -   [focus](#focus-1)
     -   [drawAttention](#drawattention)
 -   [notifications](#notifications)
+    -   [create](#create-2)
+    -   [update](#update-1)
+    -   [clear](#clear-1)
+    -   [getAll](#getall-4)
 -   [runtime](#runtime)
     -   [sendMessage](#sendmessage)
 -   [cookie](#cookie)
     -   [get](#get-3)
     -   [set](#set-2)
-    -   [getAll](#getall-4)
+    -   [getAll](#getall-5)
     -   [remove](#remove)
     -   [getAllCookieStores](#getallcookiestores)
 -   [BadgeManager](#badgemanager)
     -   [add](#add)
     -   [subtract](#subtract)
-    -   [clear](#clear-1)
+    -   [clear](#clear-2)
+-   [index](#index)
 
 ### wallpaper
 
@@ -576,6 +581,48 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Send and manage browser notifications
 
+#### create
+
+-   **See: [NotificationsOptions](https://developer.chrome.com/extensions/notifications#type-NotificationOptions)**
+
+Create and display a new notification
+
+**Parameters**
+
+-   `notificationId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** optional id to assign notification. If empty will be automatically generated
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** NotificationsOptions object
+
+Returns **Prromise&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** id of created notification
+
+#### update
+
+-   **See: [NotificationsOptions](https://developer.chrome.com/extensions/notifications#type-NotificationOptions)**
+
+Update existing notification
+
+**Parameters**
+
+-   `notificationId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** id of notification to update
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** NotificationOptions object
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>** Boolean wasUpdated indicating whether notification was updated
+
+#### clear
+
+-   **See: [NotificationsOptions](https://developer.chrome.com/extensions/notifications#type-NotificationOptions)**
+
+Clear specified notification
+
+**Parameters**
+
+-   `notificationId` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** id of notification to clear
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>** Boolean wasCleared specifying whether the matching notification existed
+
+#### getAll
+
+Get all notifications
+
 ### runtime
 
 Manage runtime tasks like messaging extensions
@@ -691,6 +738,10 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 Clear your badge
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** nothing
+
+### index
+
+Retrieves whether the user has enabled notifications from the app/extension
 
 ## Something broken?
 
