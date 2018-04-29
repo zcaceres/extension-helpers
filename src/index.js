@@ -7,6 +7,7 @@ import history from './history';
 import alarms from './alarms';
 import localStorage from './localStorage';
 import runtime from './runtime';
+import notifications from 'notifications';
 import extensions from './extensions';
 import wallpaper from './wallpaper';
 import windows from './windows';
@@ -71,6 +72,11 @@ prefixBrowser();
   */
 
 /**
+  * Send and manage browser notifications
+  * @module notifications
+  */
+
+/**
  * Schedule code to run at a specific time.
  * @module alarms
  */
@@ -84,6 +90,7 @@ export default {
   history,
   localStorage,
   message,
+  notifications,
   tabs,
   runtime,
   wallpaper,
