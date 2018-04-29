@@ -7,7 +7,7 @@ import history from './history';
 import alarms from './alarms';
 import localStorage from './localStorage';
 import runtime from './runtime';
-import notifications from 'notifications';
+import notifications from './notifications';
 import extensions from './extensions';
 import wallpaper from './wallpaper';
 import windows from './windows';
