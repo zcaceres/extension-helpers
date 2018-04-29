@@ -2,6 +2,14 @@
 
 > Work in progress, PRS welcome
 
+```js
+import extensionHelpers from 'extension-helpers';
+
+// or
+
+const extensionHelpers = require('extension-helpers').default;
+```
+
 Promisified, cross-browser wrappers and helpers for extension APIs.
 
 -   Normalized & Promisified: no more fussing with Chrome's irregular callbacks, all functions returns a promise
@@ -688,4 +696,4 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 
 Go bother:
 
-> Zachary Caceres ([Twitter](https://www.twitter.com/zachcaceres) \| [GitHub](https://www.github.com/zcaceres) \| [Website](http://zachcaceres.com) )
+> Zach Caceres ([Twitter](https://www.twitter.com/zachcaceres) \| [GitHub](https://www.github.com/zcaceres) \| [Website](http://zachcaceres.com) )
